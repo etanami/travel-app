@@ -21,7 +21,7 @@ app.use(cors());
 app.use(express.static('dist'));
 
 // Setup Server
-const port = 3030;
+const port = 9090;
 //to spin up the server
 const server = app.listen(port, listening);
 //callback function
@@ -35,12 +35,6 @@ app.get('/all', (req, res) => {
   res.send(projectData);
 });
 
-app.post('/addWeather', addWeather);
-
-function addWeather(req, res) {
-  projectData.temperature = req.body.temperature;
-  projectData.date = req.body.date;
-  projectData.feelings = req.body.feelings;
-  res.send(projectData);
-  console.log(projectData);
-}
+app.get('/', (req, res) => {
+  res.sendFile('dist/index.html');
+});
