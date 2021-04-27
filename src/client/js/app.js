@@ -4,6 +4,7 @@ const wBitApiKey = 'd5662da56cf148debed653381e7b914b';
 const pixabayKey = '21033671-a327837f499062cd366d0e3de';
 
 /* Global variables */
+const forecast = document.querySelector('.forecast');
 const ui_country = document.querySelector('.country');
 const ui_temp = document.querySelector('.temperature');
 const ui_code = document.querySelector('.code');
@@ -35,7 +36,7 @@ export async function performAction(e) {
   //calls geoname function
   getGeoname(city);
 
-  countDown();
+  //countDown();
 }
 
 /*Geoname fetch function*/
@@ -148,10 +149,12 @@ const updateUI = (image, temp, description, icon, code, country, dayN) => {
       );
 
       //updating countdown element
-      //countD.innerHTML = 'You have ' + dayN + ' days to your trip!';
+      countD.innerHTML = 'You have ' + dayN + ' days to your trip!';
 
       //updating UI
-      ui_country.innerHTML = 'Your trip is in ' + country;
+      forecast.classList.remove('d-none');
+
+      ui_country.innerHTML = 'Your trip is to ' + country;
       ui_code.innerHTML = code;
       ui_temp.innerHTML = temp + '°C';
       ui_description.innerHTML = description;
@@ -168,7 +171,7 @@ const updateUI = (image, temp, description, icon, code, country, dayN) => {
     });
 };
 
-/*Countdown function to count days left to the trip*/
+/*Countdown function to count days left to the trip
 const countDown = () => {
   //e.preventDefault();
 
@@ -197,4 +200,4 @@ const countDown = () => {
   } else if (count < -1) {
     alert("Can't enter a past date");
   }
-};
+}; */
