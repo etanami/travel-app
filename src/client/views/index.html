@@ -16,7 +16,7 @@
   </head>
   <body>
     <!-- HEADER SECTION -->
-    <header id="main-header" class="bg-dark text-center py-4">
+    <header id="main-header" class="bg-dark text-center py-3">
       <div class="text-white display-4">Travel Planner App</div>
     </header>
 
@@ -24,7 +24,7 @@
     <section id="input-section" class="front-page">
       <div class="container">
         <div class="py-5">
-          <div class="input-title mx-auto text-center mt-4">
+          <div class="input-title mx-auto text-center mt-3">
             <h1 class="input-text bg-light rounded p-3 h2">
               Where is your next Destination?
             </h1>
@@ -64,8 +64,37 @@
               </div>
             </div>
             <div class="col-lg-8">
-              <div class="bg-light forecast">
-                <div id="countDown"></div>
+              <span id="countDown mt-3"></span>
+              <div class="mt-4 forecast">
+                <div class="text-center">
+                  <img src="" id="city-img" class="img-fluid col-lg-9" />
+                </div>
+                <div class="row">
+                  <div class="col-lg-6 bg-light mt-4">
+                    <div class="h4 mt-2 text-center country"></div>
+                    <ul class="list-unstyled">
+                      <li>Country Code: <span class="code"></span></li>
+                      <li>Temperature is <span class="temperature"></span></li>
+                      <li>Description: <span class="description"></span></li>
+                    </ul>
+                    <div class="">
+                      <img src="" class="img-flud col-3 icon" />
+                    </div>
+                  </div>
+                  <div class="col-lg-6 mt-4 bg-light">
+                    <div class="h4 mt-2 text-center">More Information:</div>
+                    <div class="mb-2">
+                      <img src="" class="img-flud col-2 flag" />
+                    </div>
+                    <ul class="list-unstyled">
+                      <li>Capital: <span class="capital"></span></li>
+                      <li>Language: <span class="language"></span></li>
+                      <li>Call Code: <span class="call-code"></span></li>
+                      <li>Official Currency: <span class="currency"></span></li>
+                      <li>Sub-region: <span class="sub-region"></span></li>
+                    </ul>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

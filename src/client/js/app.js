@@ -1,9 +1,22 @@
-//API Keys
+/* API Keys */
 const geoApiKey = 'etanami';
 const wBitApiKey = 'd5662da56cf148debed653381e7b914b';
 const pixabayKey = '21033671-a327837f499062cd366d0e3de';
 
-document.getElementById('submit').addEventListener('click', performAction);
+/* Global variables */
+const ui_country = document.querySelector('.country');
+const ui_temp = document.querySelector('.temperature');
+const ui_code = document.querySelector('.code');
+const ui_description = document.querySelector('.description');
+const ui_cloud_icon = document.querySelector('.icon');
+const ui_img = document.getElementById('city-img');
+const ui_callCode = document.querySelector('.call-code');
+const ui_capital = document.querySelector('.capital');
+const ui_currency = document.querySelector('.currency');
+const ui_subregion = document.querySelector('.sub-region');
+const ui_language = document.querySelector('.language');
+const ui_flag = document.querySelector('.flag');
+const countD = document.getElementById('countDown');
 
 export async function performAction(e) {
   e.preventDefault();
@@ -19,11 +32,10 @@ export async function performAction(e) {
     error.innerHTML = '';
   }
 
-  //calls countdown function
-  countDown();
-
   //calls geoname function
   getGeoname(city);
+
+  countDown();
 }
 
 /*Geoname fetch function*/
@@ -66,12 +78,22 @@ const getWeatherbit = async (lat, long, code, country) => {
     .then((data) => {
       console.log(data);
       const city = data.city_name;
-      const temp = data.data[0].temp;
-      const description = data.data[0].weather.description;
+      const temp = data.data[dayN].temp;
+      const description = data.data[dayN].weather.description;
+      const icon = data.data[dayN].weather.icon;
 
-      console.log(city, temp, description);
+      console.log(city, temp, description, icon);
 
-      getPixabay(pixabayKey, city, temp, description, code, country, dayN);
+      getPixabay(
+        pixabayKey,
+        city,
+        temp,
+        description,
+        icon,
+        code,
+        country,
+        dayN
+      );
     });
 };
 
@@ -81,6 +103,7 @@ const getPixabay = async (
   city,
   temp,
   description,
+  icon,
   code,
   country,
   dayN
@@ -92,12 +115,12 @@ const getPixabay = async (
       const image = data.hits[0].webformatURL;
       console.log(image);
 
-      updateUI(image, temp, description, code, country, dayN);
+      updateUI(image, temp, description, icon, code, country, dayN);
     });
 };
 
 /* Function that dynamically updates the UI */
-const updateUI = (image, temp, description, code, country, dayN) => {
+const updateUI = (image, temp, description, icon, code, country, dayN) => {
   //Integrating REST API to give more information about the country
   fetch(`https://restcountries.eu/rest/v2/name/${country}`)
     .then((res) => res.json())
@@ -120,13 +143,35 @@ const updateUI = (image, temp, description, code, country, dayN) => {
         currencyS,
         subregion,
         language,
-        flag
+        flag,
+        icon
       );
+
+      //updating countdown element
+      //countD.innerHTML = 'You have ' + dayN + ' days to your trip!';
+
+      //updating UI
+      ui_country.innerHTML = 'Your trip is in ' + country;
+      ui_code.innerHTML = code;
+      ui_temp.innerHTML = temp + '°C';
+      ui_description.innerHTML = description;
+      ui_cloud_icon.src = `https://www.weatherbit.io/static/img/icons/${icon}.png`;
+
+      //updating UI with more information from REST API
+      ui_img.src = image;
+      ui_capital.innerHTML = capital;
+      ui_callCode.innerHTML = '+' + callingCode;
+      ui_currency.innerHTML = currency + ', or ' + currencyS;
+      ui_language.innerHTML = language;
+      ui_subregion.innerHTML = subregion;
+      ui_flag.src = flag;
     });
 };
 
 /*Countdown function to count days left to the trip*/
 const countDown = () => {
+  //e.preventDefault();
+
   let depDate = document.getElementById('form-date').value;
   let newDate = new Date(depDate);
   let day = newDate.getTime();
@@ -142,17 +187,13 @@ const countDown = () => {
   console.log(count);
 
   if (count === -1) {
-    document.getElementById('countDown').innerHTML = 'Your trip is today!';
+    countD.innerHTML = 'Your trip is today!';
   } else if (count === 0) {
-    document.getElementById('countDown').innerHTML =
-      'You have less than a day to your trip!';
+    countD.innerHTML = 'You have less than a day to your trip!';
   } else if (count === 1) {
-    document.getElementById('countDown').innerHTML =
-      'You have 1 full day left to your trip!';
+    countD.innerHTML = 'You have 1 full day left to your trip!';
   } else if (count > 1) {
-    document.getElementById(
-      'countDown'
-    ).innerHTML = `You have ${count} days left to your trip!`;
+    countD.innerHTML = `You have ${count} days left to your trip!`;
   } else if (count < -1) {
     alert("Can't enter a past date");
   }
