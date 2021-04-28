@@ -36,7 +36,7 @@ export async function performAction(e) {
   //calls geoname function
   getGeoname(city);
 
-  //countDown();
+  countDown();
 }
 
 /*Geoname fetch function*/
@@ -149,7 +149,7 @@ const updateUI = (image, temp, description, icon, code, country, dayN) => {
       );
 
       //updating countdown element
-      countD.innerHTML = 'You have ' + dayN + ' days to your trip!';
+      //countD.innerHTML = 'You have ' + dayN + ' days to your trip!';
 
       //updating UI
       forecast.classList.remove('d-none');
@@ -171,7 +171,7 @@ const updateUI = (image, temp, description, icon, code, country, dayN) => {
     });
 };
 
-/*Countdown function to count days left to the trip
+/*Countdown function to count days left to the trip*/
 const countDown = () => {
   //e.preventDefault();
 
@@ -200,4 +200,4 @@ const countDown = () => {
   } else if (count < -1) {
     alert("Can't enter a past date");
   }
-}; */
+};
