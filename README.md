@@ -1,12 +1,29 @@
-# Weather-Journal App Project
+# CAPSTONE- Travel App Project
 
 ## Overview
-This project is an asynchronous web app that uses Web API and user data to dynamically update the UI. 
+
+This project is a travel app that allows users to enter their destination city and date of departure to dynamiallu update the UI.
 
 ## Methodization
-I modified the `server.js` file and the `website/app.js` file. Here i had to create get & post routes in both files so as to get the information needed from the Weather API, then post the needed information in the app endpoint. With this new data, I was able to update the UI dynamically. After all was done, I updated the `style.css` , to style the application to my customized perfection.
+
+- Use GeoNames.org API to fetch location data of entered city
+
+- Use Weatherbit.io API to get weather for arrival date with icons
+
+- Use Pixabay.com API to display image of destination city
+
+- Use webpack for development and production builds
+
+- Use jest to test
+
+- Install service workers
 
 ## Instructions
-* Enter zip code
-* Enter your current feeling(the way you feel about the current weather)
-* Click on the generate button to preview result
+
+- Get API keys for Weatherbit and Pixabay and a username for GeoNames.org.
+- Pick a destination and date
+- Get result
+
+## Extension
+
+The project was extended by integrating the REST Countries API to pull in data for the country being visited.
