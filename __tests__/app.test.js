@@ -1,4 +1,4 @@
-const letterCount = require('../src/client/js/test'); // from app.js
+const letterCount = require('../src/client/js/helper');
 
 describe('Testing functionality', () => {
   test('letterCount works with regular strings', () => {
