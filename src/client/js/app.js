@@ -173,8 +173,6 @@ const updateUI = (image, temp, description, icon, code, country, dayN) => {
 
 /*Countdown function to count days left to the trip*/
 const countDown = () => {
-  //e.preventDefault();
-
   let depDate = document.getElementById('form-date').value;
   let newDate = new Date(depDate);
   let day = newDate.getTime();

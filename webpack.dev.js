@@ -3,7 +3,6 @@ const webpack = require('webpack');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const WorkboxPlugin = require('workbox-webpack-plugin');
 
 module.exports = {
   entry: './src/client/index.js',
@@ -37,7 +36,6 @@ module.exports = {
     ],
   },
   plugins: [
-    new WorkboxPlugin.GenerateSW(),
     new HtmlWebPackPlugin({
       template: './src/client/views/index.html',
       filename: './index.html',
