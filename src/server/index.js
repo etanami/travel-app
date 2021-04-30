@@ -38,3 +38,10 @@ app.get('/all', (req, res) => {
 app.get('/', (req, res) => {
   res.sendFile('dist/index.html');
 });
+
+// Endpoint for testing express server
+app.get('/testServer', async (req, res) => {
+  res.json({ message: 'The server test passed!' });
+});
+
+module.exports = app;
