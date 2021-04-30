@@ -18,3 +18,8 @@
 footer a {
   text-decoration: none;
 }
+
+input[type='text']:hover,
+input[type='date']:hover {
+  cursor: pointer;
+}
